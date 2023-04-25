@@ -18994,6 +18994,7 @@ g[aria-describedby="id-22-description"] {
 .odr-img {
   margin-bottom: -40px; }
   .odr-img img {
+    background-color: white;
     border: 1px solid #5773FF; }
 
 .odr-content {

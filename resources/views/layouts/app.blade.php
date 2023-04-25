@@ -46,7 +46,7 @@
                 <div class="data-scrollbar" data-scroll="1">
                     <nav class="iq-sidebar-menu">
                         <ul id="iq-sidebar-toggle" class="iq-menu">
-                            <li class=" {{ request()->is('home') ? 'active' : ''}}"  >
+                            <li class=" {{ request()->is('home') ? 'active' : ''}}">
                                 <a href="{{ route('home') }}" class="svg-icon">
                                     <svg class="svg-icon" width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -65,8 +65,8 @@
                                     <span class="ml-4">Projects</span>
                                 </a>
                             </li>
-                            <li class=" {{ request()->is('task') ? 'active' : ''}}">
-                                <a href="../backend/page-task.html" class="svg-icon">
+                            <li class=" {{ request()->is('tasks') ? 'active' : ''}}">
+                                <a href="{{ route('tasks.index') }}" class="svg-icon">
                                     <svg class="svg-icon" width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
@@ -746,19 +746,23 @@
             </div>
         </div>
         <footer class="iq-footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="../backend/privacy-policy.html">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a href="../backend/terms-of-service.html">Terms of Use</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 text-right">
-                    <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">Task</a>.
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item"><a href="../backend/privacy-policy.html">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../backend/terms-of-service.html">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <span class="mr-1">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>©
+                        </span> <a href="#" class="">Task</a>.
+                    </div>
                 </div>
             </div>
-        </div>
         </footer>
     </div>
 
@@ -769,7 +773,7 @@
     <script async src="{{ url('/assets/js/slider.js')}}"></script>
     <script src="{{ url('/assets/js/app.js')}}"></script>
     <script src="{{ url('/assets/vendor/moment.min.js')}}"></script>
- 
+
 </body>
 
 </html>

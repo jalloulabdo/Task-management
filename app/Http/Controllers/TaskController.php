@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MembreFormRequest;
+use App\Http\Requests\TasksFormRequest;
+use App\Models\Task;
+use App\Models\Project;
 use App\Models\Membre;
 use Illuminate\Http\Request;
 
-class MembreController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $projects = Project::all();
         $membres = Membre::all();
-
-        return view('membre', compact('membres'));
+        $tasks = Task::all();
+        return view('task', compact('projects', 'membres', 'tasks'));
     }
 
     /**
@@ -29,26 +32,22 @@ class MembreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MembreFormRequest $request)
+    public function store(TasksFormRequest $request)
     {
-
-        $imageFillName = $request->image->getClientOriginalName();
-        $request->image->storeAs('public/images/membre', $imageFillName);
-
-
-        $project     = Membre::create([
+        $ytask     = Task::create([
             'name' => $request->name,
-            'image' => $imageFillName,
-            'email' => $request->email,
-            'phone' => $request->phone
+            'membre_id' => $request->membre,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'project_id' => $request->project_modal,
         ]);
-        return back()->with('success', 'Membre Add Successfully!');
+        return back()->with('success', 'Task Add Successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Membre $membre)
+    public function show(Task $task)
     {
         //
     }
@@ -56,7 +55,7 @@ class MembreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Membre $membre)
+    public function edit(Task $task)
     {
         //
     }
@@ -64,7 +63,7 @@ class MembreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Membre $membre)
+    public function update(Request $request, Task $task)
     {
         //
     }
@@ -72,7 +71,7 @@ class MembreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Membre $membre)
+    public function destroy(Task $task)
     {
         //
     }

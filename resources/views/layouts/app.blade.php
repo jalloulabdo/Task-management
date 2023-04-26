@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -773,7 +773,8 @@
     <script async src="{{ url('/assets/js/slider.js')}}"></script>
     <script src="{{ url('/assets/js/app.js')}}"></script>
     <script src="{{ url('/assets/vendor/moment.min.js')}}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
 </body>
 
 </html>

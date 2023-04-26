@@ -59,14 +59,9 @@
                             <p class="mb-3">{{$project->date_start}}--{{$project->date_end}}</p>
                             <div class="d-flex align-items-center justify-content-between pt-3 border-top">
                                 <div class="iq-media-group">
-                                    <a href="#" class="iq-media">
-                                        <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                    </a>
-                                    <a href="#" class="iq-media">
-                                        <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                    </a>
+                                   
                                 </div>
-                                <a class="btn btn-white text-primary link-shadow">High</a>
+                                <a class="btn bg-secondary-light"  href="{{ route('projects.edit',$project->id) }}" ><i class="ri-edit-box-line m-0"></i></a>
                             </div>
                         </div>
                     </div>
@@ -142,7 +137,7 @@
                                         <div id="circle-progress-13" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
                                         <div class="ml-3">
                                             <h5 class="mb-1">{{$project->name}}</h5>
-                                            <p class="mb-0">Preparing framework of block-based WordPress Theme.</p>
+                                            <p class="mb-0">{{$project->date_start}}--{{$project->date_end}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +150,7 @@
                                             <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
                                         </a>
                                     </div>
-                                    <a class="btn btn-white text-primary link-shadow">High</a>
+                                    <a class="btn bg-secondary-light"  href="{{ route('projects.edit',$project->id) }}" ><i class="ri-edit-box-line m-0"></i></a>
                                 </div>
                             </div>
                         </div>

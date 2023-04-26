@@ -17,7 +17,12 @@ class TaskController extends Controller
     {
         $projects = Project::all();
         $membres = Membre::all();
-        $tasks = Task::all();
+        $tasks=null;
+
+        if(isset($projects[0]) && !empty($projects[0])){
+            $tasks=Task::where('project_id',$projects[0]->id)->get();
+        }
+       
         return view('task', compact('projects', 'membres', 'tasks'));
     }
 
@@ -63,9 +68,18 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
-    {
-        //
+    public function update(TasksFormRequest $request, Task $task)
+    {   
+
+        $task->update([
+            'name' => $request->name,
+            'membre_id' => $request->membre,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'project_id' => $request->project_modal,
+        ]);
+        
+        return back()->with('success', 'Task Update Successfully!');
     }
 
     /**
@@ -74,5 +88,15 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+
+    /**
+     * Show view of task .
+     */
+    public function task(Request $request){
+        $tasks=Task::where('project_id',$request->idProject)->get();
+        $membres = Membre::all();
+        $idProject = $request->idProject;
+        return view('task.loadTask',compact('tasks', 'membres', 'idProject'));
     }
 }

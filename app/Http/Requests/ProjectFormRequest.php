@@ -7,8 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator; 
 
 class ProjectFormRequest extends FormRequest
 {

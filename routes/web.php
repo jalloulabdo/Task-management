@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('projects', ProjectController::class);
     Route::resource('membres', MembreController::class);
     Route::resource('tasks', TaskController::class);
+    Route::post('/loadTask', [App\Http\Controllers\TaskController::class, 'task']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

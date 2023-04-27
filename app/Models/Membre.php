@@ -9,7 +9,7 @@ class Membre extends Model
 {
     use HasFactory;
 
-      /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -19,6 +19,7 @@ class Membre extends Model
         'image',
         'email',
         'phone',
-        'password'
+        'password',
+        'id_user'
     ];
 }

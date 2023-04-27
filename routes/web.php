@@ -29,8 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('membres', MembreController::class);
     Route::resource('tasks', TaskController::class);
     Route::post('/loadTask', [App\Http\Controllers\TaskController::class, 'task']);
+    Route::post('/loadTaskHome', [App\Http\Controllers\HomeController::class, 'loadTask']);
     Route::post('/changeStatus', [App\Http\Controllers\HomeController::class, 'changeStatus']);
-    Route::fallback(function () {return view('errors.404');});
+    Route::get('/editProfile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('editProfile');
+    Route::put('/profileEdit', [App\Http\Controllers\HomeController::class, 'profileEdit'])->name('profileEdit');
+    Route::fallback(function () {
+        return view('errors.404');
+    });
     Route::get('/SendEmail', [App\Http\Controllers\EmailController::class, 'sendEmail']);
 });
 

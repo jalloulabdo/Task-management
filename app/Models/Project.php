@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-      /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -18,6 +18,7 @@ class Project extends Model
         'name',
         'date_start',
         'date_end',
-        'description'
+        'description',
+        'id_user'
     ];
 }

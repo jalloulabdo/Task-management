@@ -20,5 +20,6 @@ class Task extends Model
         'project_id',
         'deadline',
         'description',
+        'id_user'
     ];
 }

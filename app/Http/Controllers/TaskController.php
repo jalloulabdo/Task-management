@@ -15,14 +15,16 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        $membres = Membre::all();
-        $tasks=null;
+        $idUser = auth()->user()->id;
 
-        if(isset($projects[0]) && !empty($projects[0])){
-            $tasks=Task::where('project_id',$projects[0]->id)->get();
+        $projects = Project::where('id_user', $idUser)->get();
+        $membres = Membre::where('id_user', $idUser)->get();
+        $tasks = null;
+
+        if (isset($projects[0]) && !empty($projects[0])) {
+            $tasks = Task::where('project_id', $projects[0]->id)->get();
         }
-       
+
         return view('task.task', compact('projects', 'membres', 'tasks'));
     }
 
@@ -39,12 +41,15 @@ class TaskController extends Controller
      */
     public function store(TasksFormRequest $request)
     {
+        $idUser = auth()->user()->id;
+
         $ytask     = Task::create([
             'name' => $request->name,
             'membre_id' => $request->membre,
             'description' => $request->description,
             'deadline' => $request->deadline,
             'project_id' => $request->project_modal,
+            'id_user' => $idUser
         ]);
         return back()->with('success', 'Task Add Successfully!');
     }
@@ -69,7 +74,7 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      */
     public function update(TasksFormRequest $request, Task $task)
-    {   
+    {
 
         $task->update([
             'name' => $request->name,
@@ -78,7 +83,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'project_id' => $request->project_modal,
         ]);
-        
+
         return back()->with('success', 'Task Update Successfully!');
     }
 
@@ -93,10 +98,11 @@ class TaskController extends Controller
     /**
      * Show view of task .
      */
-    public function task(Request $request){
-        $tasks=Task::where('project_id',$request->idProject)->get();
+    public function task(Request $request)
+    {
+        $tasks = Task::where('project_id', $request->idProject)->get();
         $membres = Membre::all();
         $idProject = $request->idProject;
-        return view('task.loadTask',compact('tasks', 'membres', 'idProject'));
+        return view('task.loadTask', compact('tasks', 'membres', 'idProject'));
     }
 }

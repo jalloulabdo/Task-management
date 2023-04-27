@@ -13,7 +13,9 @@ class MembreController extends Controller
      */
     public function index()
     {
-        $membres = Membre::all();
+        $idUser = auth()->user()->id;
+
+        $membres = Membre::where('id_user', $idUser)->get();
 
         return view('membre.membre', compact('membres'));
     }
@@ -35,13 +37,15 @@ class MembreController extends Controller
         $imageFillName = $request->image->getClientOriginalName();
         $request->image->storeAs('public/images/membre', $imageFillName);
 
+        $idUser = auth()->user()->id;
 
         $project     = Membre::create([
             'name' => $request->name,
             'image' => $imageFillName,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $request->password
+            'password' => $request->password,
+            'id_user' => $idUser
         ]);
         return back()->with('success', 'Membre Add Successfully!');
     }
@@ -66,23 +70,23 @@ class MembreController extends Controller
      * Update the specified resource in storage.
      */
     public function update(MembreFormRequest $request, Membre $membre)
-    {    
-        
-        if(isset($request->image) && !empty($request->image)){
+    {
+
+        if (isset($request->image) && !empty($request->image)) {
             $imageFillName = $request->image->getClientOriginalName();
             $request->image->storeAs('public/images/membre', $imageFillName);
             $membre->update([
                 'image' => $imageFillName
             ]);
         }
-        
+
         $membre->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => $request->password,
         ]);
-        
+
         return redirect()->route('membres.index')->with('success', 'Project Update Successfully!');
     }
 
@@ -90,11 +94,11 @@ class MembreController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Membre $membre)
-    {   
-        
+    {
+
         $membre->delete();
-    
+
         return redirect()->route('membres.index')
-                        ->with('success','Membre deleted successfully');
+            ->with('success', 'Membre deleted successfully');
     }
 }

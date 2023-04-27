@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProjectFormRequest;
 use App\Models\Project;
 use App\Models\Task;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -24,36 +25,38 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        $taskCount=array();
-        $class=array();
+        $idUser = auth()->user()->id;
+
+        $projects = Project::where('id_user', $idUser)->get();
+
+        $taskCount = array();
+        $class = array();
 
         foreach ($projects as $key => $project) {
-            
+
             $taskList = Task::where('project_id', $project->id)->get();
-            
+
             $nbTask = $taskList->count();
-            
-            $taskListDone = Task::where('project_id', '<=', $project->id)->where('status',2)->get();
+
+            $taskListDone = Task::where('project_id', '<=', $project->id)->where('status', 2)->get();
             $nbTaskDone = $taskListDone->count();
 
             $taskCount[$key] = 0;
             $class[$key] = 'circle-progress-secondary';
 
-            if($nbTask > 0){
+            if ($nbTask > 0) {
                 $prcent = ($nbTaskDone / $nbTask) * 100;
                 $taskCount[$key] = $prcent;
-                if($prcent > 30 && $prcent < 50 ){
+                if ($prcent > 30 && $prcent < 50) {
                     $class[$key] = 'circle-progress-warning';
-                }elseif ($prcent >= 50 && $prcent < 75) {
+                } elseif ($prcent >= 50 && $prcent < 75) {
                     $class[$key] = 'circle-progress-primary';
-                }else{
+                } elseif ($prcent >= 75) {
                     $class[$key] = 'circle-progress-success';
                 }
             }
-            
         }
-       
+
         return view('project.project', compact('projects', 'taskCount', 'class'));
     }
 
@@ -70,8 +73,15 @@ class ProjectController extends Controller
      */
     public function store(ProjectFormRequest $request)
     {
+        $idUser = auth()->user()->id;
 
-        $project     = Project::create(['name' => $request->name, 'date_start' => $request->startDate, 'date_end' => $request->endDate, 'description' => $request->description]);
+        $project     = Project::create([
+            'name' => $request->name,
+            'date_start' => $request->startDate,
+            'date_end' => $request->endDate,
+            'description' => $request->description,
+            'id_user' => $idUser
+        ]);
         return redirect('projects')->with('msg', $project);
     }
 
@@ -113,8 +123,8 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-    
+
         return redirect()->route('projects.index')
-                        ->with('success','Project deleted successfully');
+            ->with('success', 'Project deleted successfully');
     }
 }

@@ -5,8 +5,6 @@
     .bootstrap-select>.dropdown-toggle:after {
         margin-top: -1px;
     }
-
- 
 </style>
 <div class="wrapper">
     <div class="container-fluid">

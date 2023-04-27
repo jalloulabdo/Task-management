@@ -7,10 +7,9 @@
             <div class="card card-block card-stretch card-height">
                 <div class="card-body">
                     <div class="top-block d-flex align-items-center justify-content-between">
-                        <h5>Investment</h5>
-                        <span class="badge badge-primary">Monthly</span>
+                        <h5>Total Projects</h5>
                     </div>
-                    <h3>$<span class="counter">35000</span></h3>
+                    <h3><span class="counter">{{$nbProject ? $nbProject : 0}}</span></h3>
                     <div class="d-flex align-items-center justify-content-between mt-1">
                         <p class="mb-0">Total Revenue</p>
                         <span class="text-primary">65%</span>
@@ -25,10 +24,9 @@
             <div class="card card-block card-stretch card-height">
                 <div class="card-body">
                     <div class="top-block d-flex align-items-center justify-content-between">
-                        <h5>Sales</h5>
-                        <span class="badge badge-warning">Anual</span>
+                        <h5>Total Tasks</h5>
                     </div>
-                    <h3>$<span class="counter">25100</span></h3>
+                    <h3><span class="counter">{{$nbTasks ? $nbTasks : 0}}</span></h3>
                     <div class="d-flex align-items-center justify-content-between mt-1">
                         <p class="mb-0">Total Revenue</p>
                         <span class="text-warning">35%</span>
@@ -43,10 +41,9 @@
             <div class="card card-block card-stretch card-height">
                 <div class="card-body">
                     <div class="top-block d-flex align-items-center justify-content-between">
-                        <h5>Cost</h5>
-                        <span class="badge badge-success">Today</span>
+                        <h5>Tasks Do</h5>
                     </div>
-                    <h3>$<span class="counter">33000</span></h3>
+                    <h3><span class="counter">{{$nbTasksDo ? $nbTasksDo : 0}}</span></h3>
                     <div class="d-flex align-items-center justify-content-between mt-1">
                         <p class="mb-0">Total Revenue</p>
                         <span class="text-success">85%</span>
@@ -57,24 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="card card-block card-stretch card-height">
-                <div class="card-body">
-                    <div class="top-block d-flex align-items-center justify-content-between">
-                        <h5>Profit</h5>
-                        <span class="badge badge-info">Weekly</span>
-                    </div>
-                    <h3>$<span class="counter">2500</span></h3>
-                    <div class="d-flex align-items-center justify-content-between mt-1">
-                        <p class="mb-0">Total Revenue</p>
-                        <span class="text-info">55%</span>
-                    </div>
-                    <div class="iq-progress-bar bg-info-light mt-2">
-                        <span class="bg-info iq-progress progress-1" data-percent="55"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -103,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" id="card-load">
         <div class="col-xl-4">
             <div class="card card-block card-stretch card-height">
                 <h5 class=" m-3">To do</h5>
@@ -195,15 +175,15 @@
         const elementId = $(el).attr("id");
         const targetID = $(target).attr("id");
         const sourceId = $(source).attr("id");
-        
-        changeStatus(elementId,sourceId,targetID)
+
+        changeStatus(elementId, sourceId, targetID)
     });
 
-    function changeStatus(elementId,sourceId,targetID){
+    function changeStatus(elementId, sourceId, targetID) {
         console.log(elementId);
         console.log(sourceId);
         console.log(targetID);
-        
+
         $_token = "{{ csrf_token() }}";
         $.ajax({
             headers: {
@@ -211,18 +191,59 @@
             },
             url: "{{ url('/changeStatus') }}",
             type: 'POST',
-            async: true ,
+            async: true,
             cache: false,
             data: {
-                'id': elementId, 'source' : sourceId, 'target' : targetID
+                'id': elementId,
+                'source': sourceId,
+                'target': targetID
             }, //see the $_token
             datatype: 'html',
-            success: function(data) { 
-            },
+            success: function(data) {},
             error: function(xhr, textStatus, thrownError) {
 
             }
         });
     }
+
+    const select = document.getElementById('project');
+    select.addEventListener('change', function handleChange(event) {
+        const idProject = event.target.value
+
+
+        $_token = "{{ csrf_token() }}";
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ url('/loadTaskHome') }}",
+            type: 'POST',
+            async: true,
+            cache: false,
+            data: {
+                'idProject': idProject
+            }, //see the $_token
+            datatype: 'html',
+            success: function(data) {
+                $("#card-load").empty();
+                $('#card-load').html(data);
+                dragula([
+                    document.getElementById("to-do"),
+                    document.getElementById("doing"),
+                    document.getElementById("done")
+                ]).on('drop', (el, target, source, sibling) => {
+                    const elementId = $(el).attr("id");
+                    const targetID = $(target).attr("id");
+                    const sourceId = $(source).attr("id");
+
+                    changeStatus(elementId, sourceId, targetID)
+                });
+            },
+            error: function(xhr, textStatus, thrownError) {
+
+            }
+        });
+
+    });
 </script>
 @endsection

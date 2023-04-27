@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->Integer('status')->default(0);
             $table->date('deadline');
+            $table->integer('id_user');
             $table->timestamps();
 
             $table->foreign('membre_id')->references('id')->on('membres')->onDelete('cascade');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
             $table->text('description')->nullable();
+            $table->integer('id_user');
             $table->timestamps();
         });
     }

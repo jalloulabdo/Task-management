@@ -14,9 +14,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-
+    
     <link rel="shortcut icon" href="{{ url('/assets/images/favicon.ico')}}" />
     <link rel="stylesheet" href="{{ url('/assets/css/backend-plugin.min.css')}}">
+    <link rel="stylesheet" href="{{ url('/assets/css/backend.css')}}">
     <link rel="stylesheet" href="{{ url('/assets/css/backend.css?v=1.0.0')}}">
     <link rel="stylesheet" href="{{ url('/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ url('/assets/vendor/remixicon/fonts/remixicon.css')}}">
@@ -25,7 +26,6 @@
     <link rel="stylesheet" href="{{ url('/assets/vendor/tui-calendar/tui-date-picker/dist/tui-date-picker.css')}}">
     <link rel="stylesheet" href="{{ url('/assets/vendor/tui-calendar/tui-time-picker/dist/tui-time-picker.css')}}">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>

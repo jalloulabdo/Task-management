@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('membres', MembreController::class);
     Route::resource('tasks', TaskController::class);
     Route::post('/loadTask', [App\Http\Controllers\TaskController::class, 'task']);
+    Route::post('/changeStatus', [App\Http\Controllers\HomeController::class, 'changeStatus']);
+    Route::fallback(function () {return view('errors.404');});
+    Route::get('/SendEmail', [App\Http\Controllers\EmailController::class, 'sendEmail']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

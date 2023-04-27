@@ -15,7 +15,7 @@ class MembreController extends Controller
     {
         $membres = Membre::all();
 
-        return view('membre', compact('membres'));
+        return view('membre.membre', compact('membres'));
     }
 
     /**
@@ -40,7 +40,8 @@ class MembreController extends Controller
             'name' => $request->name,
             'image' => $imageFillName,
             'email' => $request->email,
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'password' => $request->password
         ]);
         return back()->with('success', 'Membre Add Successfully!');
     }
@@ -58,22 +59,42 @@ class MembreController extends Controller
      */
     public function edit(Membre $membre)
     {
-        //
+        return view('membre.edit', compact('membre'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Membre $membre)
-    {
-        //
+    public function update(MembreFormRequest $request, Membre $membre)
+    {    
+        
+        if(isset($request->image) && !empty($request->image)){
+            $imageFillName = $request->image->getClientOriginalName();
+            $request->image->storeAs('public/images/membre', $imageFillName);
+            $membre->update([
+                'image' => $imageFillName
+            ]);
+        }
+        
+        $membre->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request->password,
+        ]);
+        
+        return redirect()->route('membres.index')->with('success', 'Project Update Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Membre $membre)
-    {
-        //
+    {   
+        
+        $membre->delete();
+    
+        return redirect()->route('membres.index')
+                        ->with('success','Membre deleted successfully');
     }
 }

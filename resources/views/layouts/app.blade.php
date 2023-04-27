@@ -17,6 +17,7 @@
 
     <link rel="shortcut icon" href="{{ url('/assets/images/favicon.ico')}}" />
     <link rel="stylesheet" href="{{ url('/assets/css/backend-plugin.min.css')}}">
+    <link rel="stylesheet" href="{{ url('/assets/css/backend.css')}}">
     <link rel="stylesheet" href="{{ url('/assets/css/backend.css?v=1.0.0')}}">
     <link rel="stylesheet" href="{{ url('/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ url('/assets/vendor/remixicon/fonts/remixicon.css')}}">
@@ -26,8 +27,7 @@
     <link rel="stylesheet" href="{{ url('/assets/vendor/tui-calendar/tui-time-picker/dist/tui-time-picker.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.css" integrity="sha512-gGkweS4I+MDqo1tLZtHl3Nu3PGY7TU8ldedRnu60fY6etWjQ/twRHRG2J92oDj7GDU2XvX8k6G5mbp0yCoyXCA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.css" integrity="sha512-49xW99xceMN8dDoWaoCaXvuVMjnUctHv/jOlZxzFSMJYhqDZmSF/UnM6pLJjQu0YEBLSdO1DP0er6rUdm8/VqA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Scripts -->
-    <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
+    <!-- Scripts --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.js" integrity="sha512-Go0jK2e5PYtDuRfDMQVNHauv3p9bGVLg8UB1B1KzfR1wy59QCxGUvrqMM4KquTyLpQ7psbSERhsYWC7mrWITKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js" integrity="sha512-MrA7WH8h42LMq8GWxQGmWjrtalBjrfIzCQ+i2EZA26cZ7OBiBd/Uct5S3NP9IBqKx5b+MMNH1PhzTsk6J9nPQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>

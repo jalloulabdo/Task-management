@@ -23,7 +23,7 @@ class TaskController extends Controller
             $tasks=Task::where('project_id',$projects[0]->id)->get();
         }
        
-        return view('task', compact('projects', 'membres', 'tasks'));
+        return view('task.task', compact('projects', 'membres', 'tasks'));
     }
 
     /**

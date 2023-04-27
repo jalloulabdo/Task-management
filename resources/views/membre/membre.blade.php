@@ -68,53 +68,6 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-lg-4 col-md-6">
-                    <div class="card-transparent card-block card-stretch card-height">
-                        <div class="card-body text-center p-0">
-                            <div class="item">
-                                <div class="odr-img">
-                                    <img src="../assets/images/user/02.jpg" class="img-fluid rounded-circle avatar-90 m-auto" alt="image">
-                                </div>
-                                <div class="odr-content rounded">
-                                    <h4 class="mb-2">Kaylynn Press</h4>
-                                    <p class="mb-3">kaylynnpress@gmail.com</p>
-                                    <ul class="list-unstyled mb-3">
-                                        <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-mail-open-line m-0"></i></li>
-                                        <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-chat-3-line m-0"></i></li>
-                                        <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
-                                    </ul>
-                                    <div class="pt-3 border-top">
-                                        <a href="#" class="btn btn-primary">Message</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card-transparent card-block card-stretch card-height">
-                        <div class="card-body text-center p-0">
-                            <div class="item">
-                                <div class="odr-img">
-                                    <img src="../assets/images/user/03.jpg" class="img-fluid rounded-circle avatar-90 m-auto" alt="image">
-                                </div>
-                                <div class="odr-content rounded">
-                                    <h4 class="mb-2">Corey Press</h4>
-                                    <p class="mb-3">coreypress@gmail.com</p>
-                                    <ul class="list-unstyled mb-3">
-                                        <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-mail-open-line m-0"></i></li>
-                                        <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-chat-3-line m-0"></i></li>
-                                        <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
-                                    </ul>
-                                    <div class="pt-3 border-top">
-                                        <a href="#" class="btn btn-primary">Message</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div id="list" class="item-content animate__animated animate__fadeIn" data-toggle-extra="tab-content">
@@ -142,64 +95,17 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <a href="#" class="text-body"><i class="las la-pen mr-3"></i></a>
-                                    <a href="#" class="text-body"><i class="las la-trash-alt mr-0"></i></a>
+                                    <a href="{{ route('membres.edit',$membre->id) }}" class="text-body"><i class="las la-pen mr-3"></i></a>
+                                    <form action="{{ route('membres.destroy', $membre->id ) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Are you sure to delete this user?')" class="btn bg-secondary-light"><i class="las la-trash-alt mr-0"></i></button>
+                                    </form>
+
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td>
-                                <div class="media align-items-center">
-                                    <img src="../assets/images/user/02.jpg" class="img-fluid rounded-circle avatar-40" alt="image">
-                                    <h5 class="ml-3">Kaylynn Press</h5>
-                                </div>
-                            </td>
-                            <td>kaylynnpress@gmail.com</td>
-                            <td>
-                                <div class="media align-items-center">
-                                    <div class="bg-secondary-light rounded-circle iq-card-icon-small mr-3"><i class="ri-mail-open-line m-0"></i></div>
-                                    <div class="bg-primary-light rounded-circle iq-card-icon-small mr-3"><i class="ri-chat-3-line m-0"></i></div>
-                                    <div class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-primary">Message</a>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#" class="text-body"><i class="las la-pen mr-3"></i></a>
-                                    <a href="#" class="text-body"><i class="las la-trash-alt mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media align-items-center">
-                                    <img src="../assets/images/user/03.jpg" class="img-fluid rounded-circle avatar-40" alt="image">
-                                    <h5 class="ml-3">Corey Press</h5>
-                                </div>
-                            </td>
-                            <td>coreypress@gmail.com</td>
-                            <td>
-                                <div class="media align-items-center">
-                                    <div class="bg-secondary-light rounded-circle iq-card-icon-small mr-3"><i class="ri-mail-open-line m-0"></i></div>
-                                    <div class="bg-primary-light rounded-circle iq-card-icon-small mr-3"><i class="ri-chat-3-line m-0"></i></div>
-                                    <div class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-primary">Message</a>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#" class="text-body"><i class="las la-pen mr-3"></i></a>
-                                    <a href="#" class="text-body"><i class="las la-trash-alt mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-
-
                     </tbody>
                 </table>
             </div>
@@ -246,29 +152,17 @@
                                 <input type="text" class="form-control" name="email" id="exampleInputText006" placeholder="Enter your Email">
                             </div>
                         </div>
-                        <!-- <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                            <label for="exampleInputText2" class="h5">Type</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                                <option>Type</option>
-                                <option>Trainee</option>
-                                <option>Employee</option>
-                            </select>
+                        <div class="col-lg-6">
+                            <label for="exampleInputText007" class="h5">Password</label>
+                            <div class="input-group mb-4">
+
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-primary" type="button" onClick=generatePass()>Generate </button>
+                                </div>
+
+                                <input type="text" class="form-control" name="password" id="password">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                            <label for="exampleInputText2" class="h5">Role</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                                <option>Role</option>
-                                <option>Designer</option>
-                                <option>Developer</option>
-                                <option>Manager</option>
-                                <option>BDE</option>
-                                <option>SEO</option>
-                            </select>
-                        </div>
-                    </div> -->
                         <div class="col-lg-12">
                             <div class="d-flex flex-wrap align-items-ceter justify-content-center mt-2">
                                 <button type="submit" class="btn btn-primary mr-3">Save</button>
@@ -281,5 +175,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    function generatePass() {
+    var pass = '';
+    var str='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    +  'abcdefghijklmnopqrstuvwxyz0123456789@#$';
+
+   for (let i = 1; i <= 8; i++) { 
+      var char = Math.floor(Math.random()* str.length + 1); 
+            pass += str.charAt(char) 
+        } 
+  $('#password').val(pass);
+    }
+</script>
 
 @endsection

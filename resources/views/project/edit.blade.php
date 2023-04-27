@@ -28,6 +28,10 @@
                                 <label for="validationDefaultUsername">Date end  </label>
                                 <input type="date" name="endDate" class="form-control" id="exampleInputText004"value="{{$project->date_end}}">
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefaultUsername">Date end  </label>
+                                <textarea class="form-control" name="description" id="exampleInputText040" rows="2">{{$project->description}}</textarea> 
+                            </div>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Submit form</button>

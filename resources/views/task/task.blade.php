@@ -6,16 +6,7 @@
         margin-top: -1px;
     }
 
-    .dropdown-toggle::after {
-        display: inline-block;
-        margin-left: 0.255em;
-        vertical-align: 0.255em;
-        content: "";
-        border-top: 0.3em solid;
-        border-right: 0.3em solid transparent;
-        border-bottom: 0;
-        border-left: 0.3em solid transparent;
-    }
+ 
 </style>
 <div class="wrapper">
     <div class="container-fluid">
@@ -25,8 +16,8 @@
                     <div class="card-body">
                         <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
                             <h5>Your Task</h5>
-                            <div class="d-flex flex-wrap align-items-center">
-                                <div class="dropdown  dropdown-project mr-3">
+                            <div class="d-flex flex-wrap align-items-center" style="width: 40%;">
+                                <div class="dropdown  dropdown-project mr-3" style="width: 60%;">
                                     <select name="project" id="project" class="selectpicker form-control" data-style="py-0" onchange="">
                                         <option value=""><span class="h6">Projects :</span> webkit Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
                                         @foreach($projects as $index => $project)
@@ -38,6 +29,7 @@
 
                                         @endforeach
                                     </select>
+
                                 </div>
                                 @if(isset($projects) && !empty($projects[0]))
                                 <a href="#" class="btn btn-primary" data-target="#new-task-modal" data-toggle="modal">New Task</a>
@@ -87,7 +79,7 @@
                                     @else
                                     <input type="hidden" name="project_modal" value="" id="idProjectEdit" />
                                     @endif
-                                    
+
                                     <div class="collapse" id="collapseEdit{{ $task->id }}">
                                         <div class="card card-list task-card">
                                             <div class="card-header d-flex align-items-center justify-content-between px-0 mx-3">
@@ -228,7 +220,7 @@
     select.addEventListener('change', function handleChange(event) {
         const idProject = event.target.value
         document.getElementById('project-model').value = idProject;
-        
+
 
         $_token = "{{ csrf_token() }}";
         $.ajax({
@@ -237,7 +229,7 @@
             },
             url: "{{ url('/loadTask') }}",
             type: 'POST',
-            async: true ,
+            async: true,
             cache: false,
             data: {
                 'idProject': idProject
@@ -251,7 +243,7 @@
 
             }
         });
-        
+
     });
 </script>
 

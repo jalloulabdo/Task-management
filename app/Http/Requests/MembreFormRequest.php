@@ -27,19 +27,25 @@ class MembreFormRequest extends FormRequest
     {
         $rules = [
             'name' => [
-                'required', 
-            ],
-            'image' => [
                 'required',
-                'max:2048'
             ],
             'email' => [
-                'required', 
+                'required',
             ]
+
         ];
+        if ($this->getMethod() == "POST") {
+            $rules += [
+
+                'image' => [
+                    'required',
+                    'max:2048'
+                ],
+            ];
+        }
         return  $rules;
     }
-    
+
     public function failedValidation(Validator $validator)
     {
 
@@ -52,14 +58,13 @@ class MembreFormRequest extends FormRequest
             'data'      => $validator->errors()
 
         ]));
-
     }
 
     public function messages()
     {
         return [
             'name.required' => 'Please enter your name',
-            'name.eamil'     => 'Please enter email' 
+            'name.eamil'     => 'Please enter email'
         ];
     }
 }

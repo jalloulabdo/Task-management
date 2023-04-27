@@ -18,6 +18,7 @@ class Membre extends Model
         'name',
         'image',
         'email',
-        'phone'
+        'phone',
+        'password'
     ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Task;
+use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
 {
@@ -33,5 +34,28 @@ class HomeController extends Controller
         }
 
         return view('home', compact('projects', 'tasks'));
+    }
+
+
+    public function changeStatus(Request $request)
+    {
+        $pieces = explode("-", $request->id);
+        $idTask = $pieces[1];
+        $statu = 0;
+
+        if ($request->target == 'doing') {
+            $statu = 1;
+        } elseif ($request->target == 'done') {
+            $statu = 2;
+        }
+
+
+        Task::where('id', $idTask)->update([
+            'status' => $statu, 
+        ]);
+
+        return Response::json(array(
+            'success' => true, 
+          )); 
     }
 }

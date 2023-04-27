@@ -17,48 +17,42 @@
                                             <form method="POST" action="{{ route('register') }}">
                                                 @csrf
                                                 <div class="row">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-12">
                                                         <div class="floating-label form-group">
                                                             <input class="floating-input form-control" type="text" placeholder=" " name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                                             @error('name')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
+                                                            <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                             <label>Name</label>
 
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-12">
                                                         <div class="floating-label form-group">
                                                             <input class="floating-input form-control" type="email" placeholder=" " name="email" value="{{ old('email') }}" required autocomplete="email">
                                                             @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                            @enderror
                                                             <label>Email</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-12">
                                                         <div class="floating-label form-group">
                                                             <input class="floating-input form-control" type="password" placeholder=" " name="password" required autocomplete="new-password">
                                                             @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                            @enderror
                                                             <label>Password</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-12">
                                                         <div class="floating-label form-group">
                                                             <input class="floating-input form-control" type="password" placeholder=" " name="password_confirmation" required autocomplete="new-password">
                                                             <label>Confirm Password</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-white">Sign Up</button>

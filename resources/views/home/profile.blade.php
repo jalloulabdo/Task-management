@@ -76,11 +76,11 @@
                                             <div class="form-group col-sm-6">
                                                 <label class="d-block">Gender:</label>
                                                 <div class="custom-control custom-checkbox mb-3 custom-control-inline">
-                                                    <input type="radio" id="male" name="gender" value="Male" class="custom-radio-1" onclick="checkRadio(id)" {{ $user->gender == 'Male' ? 'checked' : ''}}>
+                                                    <input type="radio" id="male" name="gender" value="Male" class="custom-radio-1 mr-2" onclick="checkRadio(id)" {{ $user->gender == 'Male' ? 'checked' : ''}}>
                                                     <label class="custom-control-label" for="customControlValidation1"> Male </label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox mb-3 custom-control-inline">
-                                                    <input type="radio" id="female" name="gender" value="Female" class="custom-radio-1" {{ $user->gender == 'Female' ? 'checked' : ''}}>
+                                                    <input type="radio" id="female" name="gender" value="Female" class="custom-radio-1 mr-2" {{ $user->gender == 'Female' ? 'checked' : ''}}>
                                                     <label class="custom-control-label" for="customControlValidation1"> Female </label>
                                                 </div>
                                             </div>
@@ -99,21 +99,32 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form method="POST" action="{{ route('password.update') }}">
+                                        @csrf
+
                                         <div class="form-group">
-                                            <label for="cpass">Current Password:</label>
-                                            <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                            <input type="Password" class="form-control" id="cpass" value="">
+                                            <label for="cpass">{{ __('Email Address') }}</label>
+                                            <input id="email" type="email" class="form-control" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="npass">New Password:</label>
-                                            <input type="Password" class="form-control" id="npass" value="">
+                                            <label for="npass">{{ __('Password') }}</label>
+                                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="vpass">Verify Password:</label>
-                                            <input type="Password" class="form-control" id="vpass" value="">
+                                            <label for="vpass">{{ __('Confirm Password') }}</label>
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        <button type="submit" class="btn btn-primary mr-2">{{ __('Reset Password') }}</button>
                                         <button type="reset" class="btn iq-bg-danger">Cancel</button>
                                     </form>
                                 </div>

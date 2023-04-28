@@ -2,18 +2,18 @@
 
 @section('content')
 <div class="wrapper">
-@if (count($errors) > 0)
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @if ($message = Session::get('unique'))
             asdsad
             @endif
-        @endforeach
-    </ul>
-</div>
-@endif
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -80,7 +80,7 @@
                                     <form action="{{ route('projects.destroy', $project->id ) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick="return confirm('Are you sure to delete this user?')" class="btn bg-secondary-light"><i class="las la-trash-alt mr-0"></i></button>
+                                        <button onclick="return confirm('Are you sure to delete this Project?')" class="btn bg-secondary-light"><i class="las la-trash-alt mr-0"></i></button>
                                     </form>
                                 </div>
 
@@ -114,7 +114,7 @@
                                         <form action="{{ route('projects.destroy', $project->id ) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="return confirm('Are you sure to delete this user?')" class="btn bg-secondary-light mb-3"><i class="las la-trash-alt mr-0"></i></button>
+                                            <button onclick="return confirm('Are you sure to delete this Project?')" class="btn bg-secondary-light mb-3"><i class="las la-trash-alt mr-0"></i></button>
                                         </form>
                                     </div>
                                     <a class="btn bg-secondary-light" href="{{ route('projects.edit',$project->id) }}"><i class="ri-edit-box-line m-0"></i></a>

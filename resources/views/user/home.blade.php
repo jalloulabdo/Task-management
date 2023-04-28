@@ -51,7 +51,7 @@
                         <div class="d-flex flex-wrap align-items-center" style="width: 40%;">
                             <div class="dropdown  dropdown-project mr-3" style="width: 60%;">
                                 <select name="project" id="project" class="selectpicker form-control" data-style="py-0" onchange="">
-                                    <option value=""><span class="h6">Projects :</span> webkit Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
+                                    <option value=""><span class="h6">Projects :</span> Task Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
                                     @if(!empty($projects))
                                     @foreach($projects as $index => $project)
                                     @if($index == 0)

@@ -7,18 +7,18 @@
     }
 </style>
 <div class="wrapper">
-@if (count($errors) > 0)
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @if ($message = Session::get('unique'))
             asdsad
             @endif
-        @endforeach
-    </ul>
-</div>
-@endif
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -29,7 +29,7 @@
                             <div class="d-flex flex-wrap align-items-center" style="width: 40%;">
                                 <div class="dropdown  dropdown-project mr-3" style="width: 60%;">
                                     <select name="project" id="project" class="selectpicker form-control" data-style="py-0" onchange="">
-                                        <option value=""><span class="h6">Projects :</span> webkit Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
+                                        <option value=""><span class="h6">Projects :</span> Task Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
                                         @foreach($projects as $index => $project)
                                         @if($index == 0)
                                         <option value="{{ $project->id }}" selected>{{$project->name}}</option>
@@ -104,7 +104,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="form-group mb-3 position-relative">
-                                                    <input type="text" class="form-control bg-white" name="name" placeholder="Design landing page of webkit" value="{{ $task->name }}">
+                                                    <input type="text" class="form-control bg-white" name="name" placeholder="Design landing page of Task" value="{{ $task->name }}">
                                                     <a href="#" class="task-edit task-simple-edit text-body"><i class="ri-edit-box-line"></i></a>
                                                 </div>
                                                 <div class="card mb-3">

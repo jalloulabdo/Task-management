@@ -42,7 +42,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group mb-3 position-relative">
-                        <input type="text" class="form-control bg-white" name="name" placeholder="Design landing page of webkit" value="{{ $task->name }}">
+                        <input type="text" class="form-control bg-white" name="name" placeholder="Design landing page of Task" value="{{ $task->name }}">
                         <a href="#" class="task-edit task-simple-edit text-body"><i class="ri-edit-box-line"></i></a>
                     </div>
                     <div class="card mb-3">

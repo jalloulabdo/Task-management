@@ -13,7 +13,7 @@
                                     <div class="col-lg-6 bg-primary content-left">
                                         <div class="p-3">
                                             <h2 class="mb-2 text-white">Sign Up</h2>
-                                            <p>Create your Webkit account.</p>
+                                            <p>Create your Task account.</p>
                                             <form method="POST" action="{{ route('register') }}">
                                                 @csrf
                                                 <div class="row">

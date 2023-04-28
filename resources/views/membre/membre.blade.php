@@ -5,10 +5,10 @@
 <div class="alert alert-danger">
     <ul>
         @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @if ($message = Session::get('unique'))
-            asdsad
-            @endif
+        <li>{{ $error }}</li>
+        @if ($message = Session::get('unique'))
+        asdsad
+        @endif
         @endforeach
     </ul>
 </div>
@@ -112,7 +112,7 @@
                                     <form action="{{ route('membres.destroy', $membre->id ) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick="return confirm('Are you sure to delete this user?')" class="btn bg-secondary-light"><i class="las la-trash-alt mr-0"></i></button>
+                                        <button onclick="return confirm('Are you sure to delete this membre?')" class="btn bg-secondary-light"><i class="las la-trash-alt mr-0"></i></button>
                                     </form>
 
                                 </div>
@@ -191,15 +191,15 @@
 
 <script>
     function generatePass() {
-    var pass = '';
-    var str='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    +  'abcdefghijklmnopqrstuvwxyz0123456789@#$';
+        var pass = '';
+        var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+            'abcdefghijklmnopqrstuvwxyz0123456789@#$';
 
-   for (let i = 1; i <= 8; i++) { 
-      var char = Math.floor(Math.random()* str.length + 1); 
-            pass += str.charAt(char) 
-        } 
-  $('#password').val(pass);
+        for (let i = 1; i <= 8; i++) {
+            var char = Math.floor(Math.random() * str.length + 1);
+            pass += str.charAt(char)
+        }
+        $('#password').val(pass);
     }
 </script>
 

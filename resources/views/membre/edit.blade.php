@@ -2,6 +2,18 @@
 
 @section('content')
 <div class="wrapper"></div>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @if ($message = Session::get('unique'))
+            asdsad
+            @endif
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="row">
     <div class="col-sm-12 col-lg-12">
         <div class="card">
@@ -9,6 +21,13 @@
                 <div class="header-title">
                     <h4 class="card-title"> Edit Project</h4>
                 </div>
+                <a href="{{ route('membres.index') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </a>
             </div>
             <div class="card-body">
                 <p></p>
@@ -19,7 +38,7 @@
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
                                 <div class="crm-profile-img-edit position-relative">
-                                    <img class="crm-profile-pic rounded avatar-100" src="{{ url('storage/images/membre/'.$membre->image) }}" alt="profile-pic">
+                                    <img class="crm-profile-pic rounded avatar-100" src="{{ $membre->image ? url('storage/images/membre/'.$membre->image) : url('storage/images/membre/user-1.jpg') }}" alt="profile-pic">
                                     <div class="crm-p-image bg-primary">
                                         <i class="las la-pen upload-button"></i>
                                         <input class="file-upload" type="file" name="image" accept="image/*">

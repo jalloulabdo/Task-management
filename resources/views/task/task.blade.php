@@ -7,6 +7,18 @@
     }
 </style>
 <div class="wrapper">
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @if ($message = Session::get('unique'))
+            asdsad
+            @endif
+        @endforeach
+    </ul>
+</div>
+@endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -57,8 +69,10 @@
                                                 <div>
                                                     <h5 class="mb-2">{{ $task->name }}</h5>
                                                     <div class="media align-items-center">
-                                                        <div class="btn bg-body mr-3"><i class="ri-align-justify mr-2"></i>5/10</div>
-                                                        <div class="btn bg-body"><i class="ri-survey-line mr-2"></i>3</div>
+                                                        <div class="btn bg-body mr-3"><i class="ri-align-justify mr-2"></i>{{ $task->deadline }}</div>
+                                                        <a href="#" class="iq-media">
+                                                            <img class="img-fluid avatar-40 rounded-circle" src="{{ $task->image ? url('storage/images/membre/'.$task->image) : '' }}" alt="">
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

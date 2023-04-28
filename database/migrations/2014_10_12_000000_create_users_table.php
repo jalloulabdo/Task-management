@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('gender')->nullable();
             $table->date('date_birth')->nullable();
+            $table->tinyInteger('type')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

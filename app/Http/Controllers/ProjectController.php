@@ -6,6 +6,7 @@ use App\Http\Requests\ProjectFormRequest;
 use App\Models\Project;
 use App\Models\Task;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -71,8 +72,21 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProjectFormRequest $request)
-    {
+    public function store(Request $request)
+    {   
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'endDate' => [
+                'required'
+            ],
+            'startDate' => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $idUser = auth()->user()->id;
 
         $project     = Project::create([
@@ -105,8 +119,21 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectFormRequest $request, Project $project)
-    {
+    public function update(Request $request, Project $project)
+    {   
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'endDate' => [
+                'required'
+            ],
+            'startDate' => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $project->update([
             'name' => $request->name,
             'date_start' => $request->startDate,

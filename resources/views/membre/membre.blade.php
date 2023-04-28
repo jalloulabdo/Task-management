@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @if ($message = Session::get('unique'))
+            asdsad
+            @endif
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -33,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="pl-3 border-left btn-new">
-                                    <a href="#" class="btn btn-primary" data-target="#new-user-modal" data-toggle="modal">New Contact</a>
+                                    <a href="#" class="btn btn-primary" data-target="#new-user-modal" data-toggle="modal">New Membre</a>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +73,7 @@
                                         <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
                                     </ul>
                                     <div class="pt-3 border-top">
-                                        <a href="#" class="btn btn-primary">Message</a>
+                                        <a href="{{ route('SendEmail', ['email'=>$membre->email, 'password'=>$membre->password]) }}" class="btn btn-primary">Message</a>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +104,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary">Message</a>
+                                <a href="{{ route('SendEmail', ['email'=>$membre->email, 'password'=>$membre->password]) }}" class="btn btn-primary">Message</a>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">

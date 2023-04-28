@@ -20,6 +20,7 @@ class Membre extends Model
         'email',
         'phone',
         'password',
-        'id_user'
+        'id_user',
+        'id_admin'
     ];
 }

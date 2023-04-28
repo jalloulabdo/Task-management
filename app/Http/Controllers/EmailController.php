@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-   public function sendEmail(){
-    Mail::to('jalloulabdO88@gmail.com')->send(new emailMailable());
+   public function sendEmail($email,$password){
+     
+    Mail::to($email)->send(new emailMailable($password,$email));
+    return back()->with('success', 'Email Send Successfully!');
    }
 }

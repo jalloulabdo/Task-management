@@ -12,13 +12,15 @@ use Illuminate\Queue\SerializesModels;
 class emailMailable extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $password;
+    public $email;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($password,$email)
     {
-        //
+        $this->password = $password;
+        $this->email = $email;
     }
 
     /**
@@ -28,18 +30,16 @@ class emailMailable extends Mailable
     {
         return new Envelope(
             subject: 'Email Mailable',
+         
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->markdown('email.index',[ 'email' => $this->email,'password' => $this->password])
+               ->subject('Info Login');
     }
+   
 
     /**
      * Get the attachments for the message.

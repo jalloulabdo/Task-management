@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('email');
             $table->string('password')->nullable();
+            $table->integer('id_admin');
             $table->integer('id_user');
             $table->timestamps();
         });

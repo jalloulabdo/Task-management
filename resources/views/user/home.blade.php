@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('content')
 <div class="container">
@@ -175,7 +175,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{ url('/changeStatus') }}",
+            url: "{{ url('/changeStatusUser') }}",
             type: 'POST',
             async: true,
             cache: false,
@@ -202,7 +202,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{ url('/loadTaskHome') }}",
+            url: "{{ url('/loadTaskUser') }}",
             type: 'POST',
             async: true,
             cache: false,

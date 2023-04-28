@@ -12,8 +12,10 @@
                     <div>
                         <h5 class="mb-2">{{ $task->name }}</h5>
                         <div class="media align-items-center">
-                            <div class="btn bg-body mr-3"><i class="ri-align-justify mr-2"></i>5/10</div>
-                            <div class="btn bg-body"><i class="ri-survey-line mr-2"></i>3</div>
+                            <div class="btn bg-body mr-3"><i class="ri-align-justify mr-2"></i>{{ $task->deadline }}</div>
+                            <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="{{ $task->image ? url('storage/images/membre/'.$task->image) : '' }}" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -27,7 +29,7 @@
     <form action="{{ route('tasks.update', $task->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <input type="hidden" value="{{ $idProject }}" name="project_modal"/>
+        <input type="hidden" value="{{ $idProject }}" name="project_modal" />
         <div class="collapse" id="collapseEdit{{ $task->id }}">
             <div class="card card-list task-card">
                 <div class="card-header d-flex align-items-center justify-content-between px-0 mx-3">

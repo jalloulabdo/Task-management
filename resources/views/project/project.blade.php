@@ -2,6 +2,18 @@
 
 @section('content')
 <div class="wrapper">
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @if ($message = Session::get('unique'))
+            asdsad
+            @endif
+        @endforeach
+    </ul>
+</div>
+@endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">

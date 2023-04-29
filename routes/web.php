@@ -42,7 +42,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('SendEmail/{email}/{password}', [EmailController::class, 'sendEmail'])->name('SendEmail');
 });
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
+    Route::get('/editProfileUser', [HomeController::class, 'editProfileUser'])->name('editProfileUser');
     Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
     Route::post('/loadTaskUser', [HomeController::class, 'loadTaskUser']);
     Route::post('/changeStatusUser', [HomeController::class, 'changeStatusUser']);

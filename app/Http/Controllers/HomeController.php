@@ -139,6 +139,16 @@ class HomeController extends Controller
         return view('home.profile', compact('user'));
     }
 
+     /**
+     * Update the specified resource in storage.
+     */
+    public function editProfileUser()
+    {
+        $user = auth()->user();
+
+        return view('home.profile', compact('user'));
+    }
+
 
     /**
      * Update the specified resource in storage.

@@ -29,7 +29,7 @@
                             <div class="d-flex flex-wrap align-items-center" style="width: 40%;">
                                 <div class="dropdown  dropdown-project mr-3" style="width: 60%;">
                                     <select name="project" id="project" class="selectpicker form-control" data-style="py-0" onchange="">
-                                        <option value=""><span class="h6">Projects :</span> Task Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
+                                        <option value=""><span class="h6">Projects :</span> <i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
                                         @foreach($projects as $index => $project)
                                         @if($index == 0)
                                         <option value="{{ $project->id }}" selected>{{$project->name}}</option>
@@ -71,14 +71,13 @@
                                                     <div class="media align-items-center">
                                                         <div class="btn bg-body mr-3"><i class="ri-align-justify mr-2"></i>{{ $task->deadline }}</div>
                                                         <a href="#" class="iq-media">
-                                                            <img class="img-fluid avatar-40 rounded-circle" src="{{ $task->image ? url('storage/images/membre/'.$task->image) : '' }}" alt="">
+                                                            <img class="img-fluid avatar-40 rounded-circle" src="{{ $task->image ? url('storage/images/membre/'.$task->image) : url('storage/images/membre/user-1.jpg') }}" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="media align-items-center mt-md-0 mt-3">
-                                                <a href="#" class="btn bg-secondary-light mr-3">Design</a>
-                                                <a class="btn bg-secondary-light" data-toggle="collapse" href="#collapseEdit{{ $task->id }}" role="button" aria-expanded="false" aria-controls="collapseEdit1"><i class="ri-edit-box-line m-0"></i></a>
+                                            <div class="media align-items-center mt-md-0 mt-3"> 
+                                                <a class="btn bg-success-light" data-toggle="collapse" href="#collapseEdit{{ $task->id }}" role="button" aria-expanded="false" aria-controls="collapseEdit1"><i class="ri-edit-box-line m-0"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -156,6 +155,15 @@
                                 </form>
                             </div>
                             @endforeach
+                            @else
+                            <div class="col-lg-12">
+                                <div class="card card-widget task-card">
+                                    <div class="card-body">
+                                            <h1>No Task at the moment</h1>
+                                    </div>
+                                </div>
+                                
+                            </div>
                             @endif
                         </div>
                     </div>

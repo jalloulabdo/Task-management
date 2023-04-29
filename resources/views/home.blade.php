@@ -48,10 +48,10 @@
                 <div class="card-body">
                     <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
                         <h5>Task</h5>
-                        <div class="d-flex flex-wrap align-items-center" style="width: 40%;">
-                            <div class="dropdown  dropdown-project mr-3" style="width: 60%;">
+                        <div class="d-flex flex-wrap align-items-center" style="width: 30%;">
+                            <div class="dropdown  dropdown-project mr-3" style="width: 100%;">
                                 <select name="project" id="project" class="selectpicker form-control" data-style="py-0" onchange="">
-                                    <option value=""><span class="h6">Projects :</span> webkit Project<i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
+                                    <option value=""><span class="h6">Projects :</span><i class="ri-arrow-down-s-line ml-2 mr-0"></i></option>
                                     @if(!empty($projects))
                                     @foreach($projects as $index => $project)
                                     @if($index == 0)
@@ -78,7 +78,7 @@
                     @foreach($tasks as $task)
                     @if($task->status== 0)
                     <div class="card card-list" id="mov-{{ $task->id }}">
-                        <div class="card-body">
+                        <div class="card-body" ondblclick="doublclick()">
 
                             <div class="d-flex align-items-center">
                                 <svg class="svg-icon text-secondary mr-3" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -105,7 +105,7 @@
                     @foreach($tasks as $task)
                     @if($task->status== 1)
                     <div class="card card-list" id="mov-{{ $task->id }}">
-                        <div class="card-body">
+                        <div class="card-body" >
                             <div class="d-flex align-items-center">
                                 <svg class="svg-icon text-secondary mr-3" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -231,5 +231,10 @@
         });
 
     });
+
+
+    function myFunction() {
+       alert('hello');
+    }
 </script>
 @endsection

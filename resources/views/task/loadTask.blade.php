@@ -94,5 +94,5 @@
 </div>
 @endforeach
 @else
-<h1>Empty</h1>
+<h1>No Task at the moment</h1>
 @endif

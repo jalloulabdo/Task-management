@@ -43,7 +43,7 @@ class HomeController extends Controller
         $tasksDo = Task::where('id_user', $idUser)->where('status', 2)->get();
         $nbTasksDo = count($tasksDo);
         if (isset($nbTasks) && !empty($nbTasks)) {
-        $progression = ($nbTasksDo / $nbTasks) *100;
+            $progression = ($nbTasksDo / $nbTasks) * 100;
         }
 
         if (isset($projects[0]) && !empty($projects[0])) {
@@ -53,7 +53,9 @@ class HomeController extends Controller
         return view('home', compact('projects', 'tasks', 'nbProject', 'nbTasks', 'nbTasksDo', 'progression'));
     }
 
-
+    /**
+     * change status of task.
+     */
     public function changeStatus(Request $request)
     {
         $pieces = explode("-", $request->id);
@@ -76,7 +78,9 @@ class HomeController extends Controller
         ));
     }
 
-
+    /**
+     * change status of task.
+     */
     public function changeStatusUser(Request $request)
     {
         $pieces = explode("-", $request->id);
@@ -99,26 +103,35 @@ class HomeController extends Controller
         ));
     }
 
+    /**
+     * get task by project.
+     */
     public function loadTask(Request $request)
     {
-            
+
         $tasks = Task::where('project_id', $request->idProject)->get();
         $idProject = $request->idProject;
         return view('home.loadTask', compact('tasks',  'idProject'));
     }
-    
+
+    /**
+     * get task by project.
+     */
     public function loadTaskUser(Request $request)
     {
         $idUser = auth()->user()->id;
-        
-        $membre = Membre::where('id_user',$idUser)->first();
 
-        $tasks = Task::where('project_id', $request->idProject)->where('membre_id',$membre->id)->get();
+        $membre = Membre::where('id_user', $idUser)->first();
+
+        $tasks = Task::where('project_id', $request->idProject)->where('membre_id', $membre->id)->get();
 
         $idProject = $request->idProject;
         return view('home.loadTask', compact('tasks',  'idProject'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function editProfile()
     {
         $user = auth()->user();
@@ -126,6 +139,10 @@ class HomeController extends Controller
         return view('home.profile', compact('user'));
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function profileEdit(Request $request)
     {
 
@@ -150,24 +167,29 @@ class HomeController extends Controller
         return back()->with('success', 'Profile Update Successfully!');
     }
 
-    public function userHome(){
+
+    /**
+     * Dashboard .
+     */
+    public function userHome()
+    {
 
         $idUser = auth()->user()->id;
-        
-        $membre = Membre::where('id_user',$idUser)->first();
-        
+
+        $membre = Membre::where('id_user', $idUser)->first();
+
         $tasks = null;
         $progression = 0;
 
-       
-        $projects = DB::table('projects') 
-        ->join('tasks', 'projects.id', '=', 'tasks.project_id')
-        ->where('tasks.membre_id', $membre->id)
-        ->select('projects.*')
-        ->groupBy('projects.id')
-        ->get();
-        
-        
+
+        $projects = DB::table('projects')
+            ->join('tasks', 'projects.id', '=', 'tasks.project_id')
+            ->where('tasks.membre_id', $membre->id)
+            ->select('projects.*')
+            ->groupBy('projects.id')
+            ->get();
+
+
         $nbProject = count($projects);
 
         $tasks = Task::where('membre_id', $membre->id)->get();
@@ -178,15 +200,14 @@ class HomeController extends Controller
         $nbTasksDo = count($tasksDo);
 
         if (isset($nbTasks) && !empty($nbTasks)) {
-        $progression = ($nbTasksDo / $nbTasks) *100;
+            $progression = ($nbTasksDo / $nbTasks) * 100;
         }
 
         if (isset($projects[0]) && !empty($projects[0])) {
-            $tasks = Task::where('project_id', $projects[0]->id)->where('membre_id',$membre->id)->get();
+            $tasks = Task::where('project_id', $projects[0]->id)->where('membre_id', $membre->id)->get();
         }
-        
-        
+
+
         return view('user.home', compact('projects', 'tasks', 'nbProject', 'nbTasks', 'nbTasksDo', 'progression'));
-        
     }
 }

@@ -26,7 +26,7 @@ class TaskController extends Controller
         if (isset($projects[0]) && !empty($projects[0])) {
             
             $tasks = DB::table('tasks') 
-                    ->join('membres', 'membres.id', '=', 'tasks.membre_id')
+                    ->leftJoin('membres', 'membres.id', '=', 'tasks.membre_id')
                     ->where('tasks.project_id', $projects[0]->id)
                     ->select('tasks.*','membres.image')
                     ->get();
@@ -127,7 +127,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Show view of task .
+     * Show task  by project .
      */
     public function task(Request $request)
     {
